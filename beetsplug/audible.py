@@ -213,7 +213,7 @@ class Audible(BeetsPlugin):
                 # I was noticing inaccurate sorting if using str to convert paths to strings
                 naturally_sorted_items = os_sorted(items, key=lambda i: util.bytestring_path(i.path))
                 a.tracks = [
-                    TrackInfo(**common_track_attributes, title=item.title if not self.config["ignore_chapters"] else f"{item.album_sort} - {(i + 1):03}", length=item.length, index=i + 1)
+                    TrackInfo(**common_track_attributes, title=item.title if not self.config["ignore_chapters"] else f"{(i + 1):03}", length=item.length, index=i + 1)
                     for i, item in enumerate(naturally_sorted_items)
                 ]
         return albums
@@ -272,7 +272,7 @@ class Audible(BeetsPlugin):
                 artist=artists,
                 index=i + 1,
                 length=item.length,
-                title=item.title if not self.config["ignore_chapters"] else f"{album_sort} - {(i + 1):03}",
+                title=item.title if not self.config["ignore_chapters"] else f"{(i + 1):03}",
                 medium=1,
             )
             for i, item in enumerate(naturally_sorted_items)
@@ -428,7 +428,7 @@ class Audible(BeetsPlugin):
             TrackInfo(
                 track_id=None,
                 index=i + 1,
-                title=c.title if not self.config["ignore_chapters"] else f"{album_sort} - {(i + 1):03}",
+                title=c.title if not self.config["ignore_chapters"] else f"{(i + 1):03}",
                 medium=1,
                 artist=artists,
                 length=c.length_ms / 1000 if not self.config["match_chapters"] else None,
